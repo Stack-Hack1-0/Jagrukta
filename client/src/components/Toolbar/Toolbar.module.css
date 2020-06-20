@@ -1,0 +1,24 @@
+.Toolbar {
+  background-color: dimgray;
+  /* background-color: transparent; */
+  /* position: absolute; */
+  top: 0px;
+  position: fixed;
+  height: 60px;
+  z-index: 10;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 18px;
+  padding-left: 18px;
+  box-sizing: border-box;
+  /* border-bottom: solid; */
+  /* border-width: 0.5px; */
+  /* border-color: grey; */
+}
+@media (max-width: 499px) {
+  .DesktopOnly {
+    display: none;
+  }
+}
