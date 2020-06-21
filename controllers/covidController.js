@@ -16,6 +16,7 @@ exports.postCheck = catchAsync(async (req, res, next) => {
     if (!found_news) {
       const new_news = new News({
         data: news,
+        count: 1,
       });
       const result = await new_news.save();
       console.log(result);
