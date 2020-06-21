@@ -7,7 +7,7 @@ export const Cardlist = (props) => {
   return (
     <div>
       <div style={{ color: "white", paddingBottom: "15px" }}>
-        Detected fake news by Jaguktra
+        Detected fake news by Jagrukta
       </div>
       <div className="card-list">
         {props.news.map((x) => (

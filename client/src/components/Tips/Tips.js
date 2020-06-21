@@ -55,5 +55,6 @@ const styles = {
     borderStyle: "solid",
     margin: "5px",
     cursor: "pointer",
+    flexWrap: "wrap",
   },
 };
