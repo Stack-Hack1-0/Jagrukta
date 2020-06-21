@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card/Card";
 import Button from "../Button/Button";
+import Spinner from "../Spinner/Spinner";
 
 class CovidData {
   constructor() {}
@@ -44,7 +45,7 @@ const Covid = (props) => {
       sub = false;
     };
   }, []);
-  if (loading) return <div>loading</div>;
+  if (loading || props.stateName === "") return <Spinner />;
   let key =
     props.stateName === ""
       ? ""
