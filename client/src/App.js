@@ -21,6 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     // Axios.get("http://localhost:5000/api/v1/news",{
     //   method: 'GET'
     // })
@@ -41,6 +42,16 @@ class App extends Component {
     }).catch(err => {
       console.log(err);
     });
+=======
+    fetch("http://localhost:5000/api/v1/news", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((users) => {
+        console.log(users);
+        this.setState({ news: users });
+      });
+>>>>>>> a2f4603e6125c4757e61ef037f718b4aa5ba545b
   }
 
   handleChange = (e) => {
@@ -48,7 +59,12 @@ class App extends Component {
   };
   render() {
     const { news, searchField } = this.state;
+<<<<<<< HEAD
     console.log(news);
+=======
+    console.log("news");
+    console.log("news" + news);
+>>>>>>> a2f4603e6125c4757e61ef037f718b4aa5ba545b
     const fnews = news.filter((x) =>
       x.data.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -95,4 +111,3 @@ class App extends Component {
 }
 
 export default App;
-
