@@ -28,7 +28,7 @@ class Location extends Component {
     }
   };
   render() {
-    return <div>getLocation</div>;
+    return <div></div>;
   }
 }
 

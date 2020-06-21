@@ -8,7 +8,7 @@ import { SearchBox } from "./components/search-box/search-box";
 import Covid from "./components/covid/covid";
 import Detect from "./components/Detect/Detect";
 import Axios from "axios";
-import {Button} from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 class App extends Component {
   constructor() {
@@ -33,14 +33,16 @@ class App extends Component {
     //     this.setState({ news: users })
     //   });
     console.log("afcdvad");
-    const url = "http://localhost:5000/api/v1/news" ;
-    Axios.get(url).then(res => {
-      console.log(res);
-      console.log(res.data.all_news);
-      this.setState({news:res.data.all_news});
-    }).catch(err => {
-      console.log(err);
-    });
+    const url = "http://localhost:5000/api/v1/news";
+    Axios.get(url)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.all_news);
+        this.setState({ news: res.data.all_news });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   handleChange = (e) => {
     this.setState({ searchField: e.target.value });
