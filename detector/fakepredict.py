@@ -2,34 +2,41 @@ import numpy as np
 import nltk
 import pandas as pd
 import sklearn
+import sys
+
+mes = sys.argv[1:]
+mes = ' '.join(mes)
+
 
 def train(csv_name):
     ds = pd.read_csv(csv_name)
-    df = pd.DataFrame(ds,columns=['Head','Message','Type'])
+    df = pd.DataFrame(ds, columns=['Head', 'Message', 'Type'])
     classes = df['Type']
-    print("This",classes.value_counts())
+    # print("This", classes.value_counts())
 
     from sklearn.preprocessing import LabelEncoder
     encoder = LabelEncoder()
     Y = encoder.fit_transform(classes)
 
     messages = df["Message"]
-    msg = messages.str.replace(r'[^a-zA-Z]',' ')
-    msg = msg.str.replace(r'\s+',' ')
+    msg = messages.str.replace(r'[^a-zA-Z]', ' ')
+    msg = msg.str.replace(r'\s+', ' ')
     msg = msg.str.rstrip()
     msg = msg.str.lstrip()
     msg = msg.str.lower()
 
     from nltk.corpus import stopwords
-    nltk.download('stopwords')
-    nltk.download('wordnet')
-    nltk.download('punkt')
+   # nltk.download('stopwords', quiet=True)
+   # nltk.download('wordnet', quiet=True)
+   # nltk.download('punkt', quiet=True)
     stop_words = set(stopwords.words('english'))
-    msg = msg.apply(lambda x: ' '.join(term for term in x.split() if term not in stop_words))
+    msg = msg.apply(lambda x: ' '.join(
+        term for term in x.split() if term not in stop_words))
 
     from nltk.stem import WordNetLemmatizer
     lmt = WordNetLemmatizer()
-    msg = msg.apply(lambda x: ' '.join(lmt.lemmatize(term) for term in x.split()))
+    msg = msg.apply(lambda x: ' '.join(lmt.lemmatize(term)
+                                       for term in x.split()))
 
     from nltk.tokenize import word_tokenize
     all_words = []
@@ -40,10 +47,10 @@ def train(csv_name):
             all_words.append(w)
 
     all_words = nltk.FreqDist(all_words)
-    l=len(all_words)
+    l = len(all_words)
     word_features = list(all_words.keys())[:l]
 
-    def find_features(message,word_features):
+    def find_features(message, word_features):
         words = word_tokenize(message)
         features = {}
         for word in word_features:
@@ -51,19 +58,19 @@ def train(csv_name):
         return features
 
     from sklearn.feature_extraction.text import CountVectorizer
-    cv = CountVectorizer(max_features = 1700)
+    cv = CountVectorizer(max_features=1700)
     x = cv.fit_transform(msg).toarray()
 
     from sklearn import model_selection
-    x_train,x_test,y_train,y_test = model_selection.train_test_split(x,Y, test_size = 0.25, random_state=1)
+    x_train, x_test, y_train, y_test = model_selection.train_test_split(
+        x, Y, test_size=0.25, random_state=1)
 
-    return x_train,x_test,y_train,y_test,msg
+    return x_train, x_test, y_train, y_test, msg
 
-    
 
 def fakepredict(message):
 
-    x_train,x_test,y_train,y_test,msg= train("covid.csv")
+    x_train, x_test, y_train, y_test, msg = train("covid.csv")
     from nltk.classify.scikitlearn import SklearnClassifier
     from sklearn.neighbors import KNeighborsClassifier
     from sklearn.tree import DecisionTreeClassifier
@@ -81,14 +88,14 @@ def fakepredict(message):
         DecisionTreeClassifier(),
         RandomForestClassifier(),
         LogisticRegression(),
-        SGDClassifier(max_iter = 100),
+        SGDClassifier(max_iter=100),
         MultinomialNB(),
-        SVC(kernel = 'linear')
+        SVC(kernel='linear')
     ]
 
     models = zip(names, classifiers)
     for name, model in models:
-        model.fit(x_train,y_train)
+        model.fit(x_train, y_train)
         pred = model.predict(x_test)
         from sklearn.metrics import confusion_matrix
         from sklearn import metrics
@@ -97,17 +104,17 @@ def fakepredict(message):
         #print("Confusion matrix:\n",cm)
 
     model = MultinomialNB()
-    model.fit(x_train,y_train)
+    model.fit(x_train, y_train)
     pred = model.predict(x_test)
     from sklearn.metrics import confusion_matrix
     from sklearn import metrics
     cm = confusion_matrix(y_test, pred)
-    #print(" Accuracy:",metrics.accuracy_score(y_test,pred)*100)
-    #print(cm)
+    # print(" Accuracy:", metrics.accuracy_score(y_test, pred)*100)
+    # print(cm)
     text = message
     corpus = []
-    inp = text.replace(r'[^a-zA-Z]',' ')
-    inp = inp.replace(r'\s+',' ')
+    inp = text.replace(r'[^a-zA-Z]', ' ')
+    inp = inp.replace(r'\s+', ' ')
     inp = inp.rstrip()
     inp = inp.lstrip()
     inp = inp.lower()
@@ -117,12 +124,13 @@ def fakepredict(message):
     from nltk.corpus import stopwords
     stop_words = set(stopwords.words('english'))
     lmt = WordNetLemmatizer()
-    inp_feat = [lmt.lemmatize(word) for word in inp if not word in set(stopwords.words('english'))]
+    inp_feat = [lmt.lemmatize(word) for word in inp if not word in set(
+        stopwords.words('english'))]
     inp_feat = ' '.join(inp_feat)
     corpus.append(inp_feat)
-    #print(corpus)
+    # print(corpus)
     from sklearn.feature_extraction.text import CountVectorizer
-    cv2 = CountVectorizer(max_features = 1700)
+    cv2 = CountVectorizer(max_features=1700)
     X2 = cv2.fit_transform(msg + corpus).toarray()
     m = X2[-1].reshape(1, -1)
     result = model.predict(m)
@@ -130,10 +138,13 @@ def fakepredict(message):
         answer = "Genuine"
     else:
         answer = "Fake"
-    print("TEXT INPUT:",text)
-    print()
-    print("ANS:",answer)
-    if len(message)>1:
+    # print("TEXT INPUT:", text)
+    # print()
+    print(answer)
+    if len(message) > 1:
         return answer
     else:
         return ""
+
+
+fakepredict(mes)
