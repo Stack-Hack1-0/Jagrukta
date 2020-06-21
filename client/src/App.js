@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import "./App.css";
 import Layout from "./components/Layout/Layout";
 import Location from "./components/Location/Location";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 import { Cardlist } from "./components/card-list/card-list";
-import { SearchBox } from "./components/search-box/search-box";
 import Covid from "./components/covid/covid";
 import Detect from "./components/Detect/Detect";
 import Axios from "axios";
-import { Button } from "react-bootstrap";
+import Button from "./components/Button/Button";
 
 class App extends Component {
   constructor() {
@@ -54,44 +59,48 @@ class App extends Component {
     );
     // console.log(fnews);
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Layout>
-            <Location
-              stateHandler={(name) => this.setState({ stateName: name })}
-            ></Location>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={() => {
-                  return (
-                    <div>
-                      <div>
-                        Got a forwarded news on whatsapp. It could be
-                        misleading. Check here its genuinness{" "}
-                        <Button
-                          onClick={() => <Redirect to="/detect" />}
-                        ></Button>
-                      </div>
-                      <Cardlist news={fnews} />
+      <div className="App">
+        <Layout>
+          <Location
+            stateHandler={(name) => this.setState({ stateName: name })}
+          ></Location>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={() => {
+                return (
+                  <div>
+                    <div
+                      style={{
+                        color: "white",
+                        fontSize: "large",
+                        margin: " 10px",
+                      }}
+                    >
+                      Got a forwarded news on whatsapp. It could be misleading.
+                      Check here its genuinness{" "}
                     </div>
-                  );
-                }}
-              ></Route>
-              <Route
-                exact
-                path="/covid"
-                component={() => <Covid stateName={this.state.stateName} />}
-              ></Route>
-              <Route exact path="/detect" component={Detect}></Route>
-              <Redirect to="/" />
-            </Switch>
-          </Layout>
-        </div>
-      </BrowserRouter>
+                    <Button clicked={() => this.props.history.push("/detect")}>
+                      Detect News
+                    </Button>
+                    <Cardlist news={fnews} />
+                  </div>
+                );
+              }}
+            ></Route>
+            <Route
+              exact
+              path="/covid"
+              component={() => <Covid stateName={this.state.stateName} />}
+            ></Route>
+            <Route exact path="/detect" component={Detect}></Route>
+            <Redirect to="/" />
+          </Switch>
+        </Layout>
+      </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
