@@ -1,4 +1,4 @@
-# COVID-19 Awareness
+# Jagrukta
 
 A website to aware people in these pandemic times. Offering some useful and ground breaking features and services, ranging from Covid activity tracker to checking whether a covid related news is fake or genuine, it has it all.
 
@@ -86,15 +86,16 @@ Now development server will open in your browser.
 * [MongoDB](https://docs.mongodb.com/) - Database
 * [git](https://guides.github.com/) - Used for managing workflow
 * [npm](https://docs.npmjs.com/) - Package manager
+* [nltk](https://www.nltk.org/) - Natural language toolkit
+* [Pandas](https://pandas.pydata.org/) - Python package
+* [NumPy](https://numpy.org/) - Python package
+* [sklearn](https://pypi.org/project/sklearn/) - Python package
+
 
 ## Versioning
 
 For the versions available, see the [https://github.com/Stack-Hack1-0/covid19-awareness.git]. 
 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
