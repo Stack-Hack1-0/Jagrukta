@@ -15,11 +15,17 @@ exports.postCheck = async (req, res, next) => {
     const isFake = await detect(news);
     console.log(isFake);
     if (isFake) {
-      const new_news = new News({
-        data: news,
-      });
-      const res = await new_news.save();
-      console.log(res);
+      let found_news = await News.findOne({ data: news });
+      if (!found_news) {
+        const new_news = new News({
+          data: news,
+        });
+        const result = await new_news.save();
+        console.log(result);
+      } else {
+        found_news.count += 1;
+        await found_news.save();
+      }
       return res.status(200).json({
         status: "success",
         message: "Fake",
