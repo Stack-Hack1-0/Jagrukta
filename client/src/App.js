@@ -19,11 +19,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://localhost:5000/api/v1/news",{
-      method: 'GET'
+    fetch("http://localhost:5000/api/v1/news", {
+      method: "GET",
     })
       .then((response) => response.json())
-      .then((users) => this.setState({ news: users }));
+      .then((users) => {
+        console.log(users);
+        this.setState({ news: users });
+      });
   }
 
   handleChange = (e) => {
@@ -32,7 +35,7 @@ class App extends Component {
   render() {
     const { news, searchField } = this.state;
     console.log("news");
-    console.log("news"+news);
+    console.log("news" + news);
     const fnews = news.filter((x) =>
       x.name.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -76,4 +79,3 @@ class App extends Component {
 }
 
 export default App;
-
