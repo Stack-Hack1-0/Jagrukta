@@ -70,7 +70,8 @@ def train(csv_name):
 
 def fakepredict(message):
 
-    x_train, x_test, y_train, y_test, msg = train("covid.csv")
+    x_train, x_test, y_train, y_test, msg = train(
+        sys.argv[0].split('/')[0]+"\covid.csv")
     from nltk.classify.scikitlearn import SklearnClassifier
     from sklearn.neighbors import KNeighborsClassifier
     from sklearn.tree import DecisionTreeClassifier
