@@ -14,6 +14,8 @@ import Covid from "./components/covid/covid";
 import Detect from "./components/Detect/Detect";
 import Axios from "axios";
 import Button from "./components/Button/Button";
+import Spinner from "./components/Spinner/Spinner";
+import Tips from "./components/Tips/Tips";
 
 class App extends Component {
   constructor() {
@@ -72,7 +74,12 @@ class App extends Component {
                     <Button clicked={() => this.props.history.push("/detect")}>
                       Detect News
                     </Button>
-                    <Cardlist news={fnews} />
+                    {this.state.news.length !== 0 ? (
+                      <Cardlist news={fnews} />
+                    ) : (
+                      <Spinner />
+                    )}
+                    <Tips />
                   </div>
                 );
               }}

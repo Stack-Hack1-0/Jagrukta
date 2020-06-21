@@ -11,7 +11,7 @@ export const Cardlist = (props) => {
       </div>
       <div className="card-list">
         {props.news.map((x) => (
-          <Card key={x.id} news={x} />
+          <Card key={x._id} news={x} />
         ))}
       </div>
     </div>

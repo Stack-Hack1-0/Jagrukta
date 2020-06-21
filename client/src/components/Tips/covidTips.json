@@ -1,0 +1,28 @@
+{
+    "tips": [
+        {
+            "title": "Tips to reduce risk of infection",
+            "imgUrl": "https://www.unicef.org/bangladesh/sites/unicef.org.bangladesh/files/Dos%20and%20Dont%27s.png"
+        },
+        {
+            "title": "Corona virus- What is it?",
+            "imgUrl":"https://i.pinimg.com/474x/ed/69/4b/ed694b8a8cd64abcda95655bd35407b9.jpg"
+        },
+        {
+            "title": "Corona virus for passengers",
+            "imgUrl": "https://www.tallinn-airport.ee/wordpress/wp-content/uploads/2020/03/Terviseameti_eng.jpg"
+        },
+        {
+            "title": "Covid-19",
+            "imgUrl":"https://cdn.shopify.com/s/files/1/1060/9112/products/Covid-19-01_8e003b8d-7115-41a2-b51c-1ef6d249d745.jpg?v=1583432489"
+        },
+        {
+            "title": "symptomps",
+            "imgUrl": "https://www.businessinsider.in/thumb/msid-74960443,width-600,resizemode-4,imgsize-110772/india/news/how-to-check-coronavirus-symptoms-at-home/coronavirus-symptoms.jpg"
+        },
+        {
+            "title":"Fake news",
+            "imgUrl":"https://www.boomlive.in/h-upload/2020/05/05/921013-fn-covid-19.jpg"
+        }
+    ]
+}
