@@ -18,6 +18,7 @@ class Detect extends React.Component {
   };
 
   handleSubmit = async (e) => {
+    this.setState({ message: null });
     e.preventDefault();
     if (this.state.user_news !== "") {
       const url = "http://localhost:5000/api/v1/check";

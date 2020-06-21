@@ -26,18 +26,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Axios.get("http://localhost:5000/api/v1/news",{
-    //   method: 'GET'
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //     response.json()
-    //   })
-    //   .then((users) => {
-    //     console.log(users);
-    //     this.setState({ news: users })
-    //   });
-    console.log("afcdvad");
     const url = "http://localhost:5000/api/v1/news";
     Axios.get(url)
       .then((res) => {
