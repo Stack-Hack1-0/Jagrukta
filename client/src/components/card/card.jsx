@@ -4,7 +4,7 @@ import './card.css';
 
 export const Card = (props) => {
     return <div className='card-container'>
-        <h2>{props.news.name}</h2>
-        <p>{props.news.address.zipcode}</p>
+        <h2>{props.news.data}</h2>
+        <p>{props.news.createdAt}</p>
         </div>
 }
