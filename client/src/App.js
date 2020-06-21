@@ -61,11 +61,12 @@ class App extends Component {
               component={() => {
                 return (
                   <div>
+                    <h2 style={{ color: "#bcf542" }}>JAGRUKTA</h2>
                     <div
                       style={{
                         color: "white",
                         fontSize: "large",
-                        margin: " 10px",
+                        paddingTop: "10px",
                       }}
                     >
                       Got a forwarded news on whatsapp. It could be misleading.
