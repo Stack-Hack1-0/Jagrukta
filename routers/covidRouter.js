@@ -5,4 +5,6 @@ const covidController = require('../controllers/covidController');
 
 router.post('/check',covidController.postCheck);
 
+router.get('/news',covidController.getNews);
+
 module.exports = router;

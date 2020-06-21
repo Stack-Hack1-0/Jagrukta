@@ -22,7 +22,22 @@ exports.postCheck = async (req,res,next) => {
         if(!err.statusCode){
             err.statusCode = 500;
         }
-        // next(err);
-        console.log(err);
+        next(err);
+    }
+};
+
+exports.getNews = async (req,res,next) => {
+    try{
+        let all_news = await News.find();
+        console.log(all_news);
+        res.status(200).json({
+            message: 'fetched news',
+            all_news: all_news
+        });
+    }catch(err) {
+        if(!err.statusCode){
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
