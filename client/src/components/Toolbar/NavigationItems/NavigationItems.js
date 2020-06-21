@@ -8,6 +8,9 @@ const navigationItems = (props) => (
     className={Styles.NavigationItems}
     style={props.showNav ? { display: "none" } : null}
   >
+    <NavigationItem link="/detect" exact>
+      DETECT
+    </NavigationItem>
     <NavigationItem link="/covid" exact>
       COVID
     </NavigationItem>

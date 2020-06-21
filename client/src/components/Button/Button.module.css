@@ -1,0 +1,32 @@
+.Button {
+  width: 80px;
+  height: 40px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  background-color: coral;
+  color: white;
+  border-radius: 10px;
+  background-position: center;
+  transition: background 0.8s;
+  margin: 10px;
+}
+.Button:hover {
+  background: lightcoral radial-gradient(circle, transparent 1%, lightcoral 1%)
+    center/15000%;
+}
+.Button:active {
+  background-color: coral;
+  background-size: 100%;
+  transition: background 0s;
+}
+.Button.Continue {
+  background-color: green;
+}
+.Button.Cancel {
+  background-color: red;
+}
+.Button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
