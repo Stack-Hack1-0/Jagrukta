@@ -19,7 +19,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("https://localhost:5000/api/v1/news",{
+      method: 'GET'
+    })
       .then((response) => response.json())
       .then((users) => this.setState({ news: users }));
   }
@@ -29,9 +31,12 @@ class App extends Component {
   };
   render() {
     const { news, searchField } = this.state;
+    console.log("news");
+    console.log("news"+news);
     const fnews = news.filter((x) =>
       x.name.toLowerCase().includes(searchField.toLowerCase())
     );
+    // console.log(fnews);
     return (
       <BrowserRouter>
         <div className="App">

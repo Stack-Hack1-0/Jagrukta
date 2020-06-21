@@ -31,7 +31,6 @@ exports.postCheck = async (req, res, next) => {
         message: "Fake",
       });
     }
-
     res.status(200).json({
       status: "success",
       message: "Genuine",
