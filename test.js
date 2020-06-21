@@ -25,7 +25,6 @@ class CovidData {
 const main = async () => {
   const states = {
     AR: "Arunachal Pradesh",
-    AR: "Arunachal Pradesh",
     AS: "Assam",
     BR: "Bihar",
     CT: "Chhattisgarh",

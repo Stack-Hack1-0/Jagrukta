@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Location extends Component {
-  componentDidMount() {
+  componentDidMount = (props = this.props) => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
         console.log("Latitude is :", position.coords.latitude);
@@ -22,14 +22,11 @@ class Location extends Component {
             // dispatch(
             //   addLocation(responseJson.results[0].locations[0].adminArea5)
             // );
-            console.log({
-              state: responseJson.results[0].locations[0].adminArea3,
-              district: responseJson.results[0].locations[0].adminArea6,
-            });
+            props.stateHandler(responseJson.results[0].locations[0].adminArea3);
           });
       });
     }
-  }
+  };
   render() {
     return <div>getLocation</div>;
   }
