@@ -8,15 +8,21 @@ exports.postCheck = async (req,res,next) => {
         err.statusCode = 422;
         throw err;
     }
-    const new_news = new News({
-        data: news
-    });
     try{
-        const res = await new_news.save();
-        console.log(res);
+        let found_news = await News.findOne({data: news});
+        if(!found_news){
+            const new_news = new News({
+                data: news
+            });
+            const result = await new_news.save();
+            console.log(result);
+        }else{
+            found_news.count += 1;
+            await found_news.save();
+        }
         res.status(200).json({
             status: "success",
-            res
+            result
         });
     }catch(er){
         if(!err.statusCode){
